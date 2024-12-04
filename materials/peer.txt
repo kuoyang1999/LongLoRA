@@ -1,0 +1,28 @@
+### Review 1
+Originality:
+The algorithm seems to be novel and differs from previous comparable approaches like CoreSet or BADGE. Related work is adequately cited.
+
+Quality:
+The authors show empirically that their algorithm, Cluster-Margin, is both more efficient (O(nlog(n) vs O(n\u221a(n)) than CoreSet and BADGE in practice and more effective. In particular, the algorithm clearly outperforms CoreSet, BADGE, Margin and Random on the Open Images dataset. The algorithm requires 29% less labels than the second-best model in the 100k batch-size setting and 60% less labels in the 1M batch-size setting to achieve the same result (mAP). Cluster-Margin also outperforms all other methods on CIFAR10, CIFAR100 and obtains a similar performance on SVHN.
+The authors also establish a theoretical guarantee for the Cluster-MarginV algorithm and show that those results hold for the Cluster-Margin algorithm in specific settings. In particular, they show that the Cluster-MarginV algorithm has a label complexity bound which improves over the Margin algorithm by a factor beta. They also show that this improvement is possible, under specific hypotheses like an optimal volume-based sampler, when the dimensionality of the embedding space is small or when the batch size k is large. They also show that the optimal volume-based sampler is approximately equivalent to the Cluster-Margin algorithm. They finally show that log(k) is an upper bound on the improvement of query complexity for any sampler. The authors are aware and mention that their theoretical results are initial and that equating volume based samplers and the Cluster-Margin algorithm is an open research question.
+
+Clarity:
+The paper is very clear and well organized. The authors detail the hyper-parameters and compute details used for the experiments. The Cluster-Margin algorithm is also explained in detail. 
+
+Significance:
+The results are important as the algorithm allows for more efficient and effective large-batch-size active learning compared to existing methods. The authors also provide initial theoretical guarantees to explain the improvements obtained with the Cluster-Margin algorithm.
+It would be interesting to perform some experiments to assess if the results hold for other data modalities, like NLP (text) or ASR/Speech (audio) for instance.  
+
+### Review 2
+Originality:
+The suggested method seems novel. Compared to the CoreSet algorithm in active learning, which computes a cover of all unlabeled pool points, Cluster-Margin essentially approximates a cover of mainly *low-confidence* pool points.
+
+Quality
+The submission seems technically sound. The experiment results are impressive. Especially, the results on Open Images are impressive, but also the results on CIFAR-10 and CIFAR-100 show good improvements over the baselines. The Open Images results are great because a real-life dataset has other characteristics than smaller curated datasets ala CIFAR-10, etc, which shows promise for real-world applications of the proposed method.
+
+Clarity
+The paper is very well written. The introduction and related work are great. The introduction is lacking citations, though. The algorithm and experiment section are also clear and of high quality. The theory section is difficult to understand and only seems to give a high-level overview of \"Cluster-MarginV\". The appendix is clearer on that.
+I believe it might be worth extracting the theory section into a separate contribution. I believe the algorithm and results are sufficient on their own. The fact that the theoretical motivation comes at the very end seems telling.
+
+Significance
+I assume the paper will be of significance for practitioners. An expanded theory section could be interesting overall. It would be nice to have more results on additional large datasets. On the other hand, the paper already provides results for the common three datasets (CIFAR-10, CIFAR-100, and SVHN), and then provides results for the large and high-dimensional Open Images D
